@@ -1,0 +1,33 @@
+{
+  "homepage": {
+    "title": "Create Beautiful Books with <highlight>BookOra</highlight>",
+    "description": "The ultimate free book creation tool that helps you organize chapters, sections, and pages with ease."
+  },
+  "loginpage": {
+    "title": "Welcome back",
+    "description": "Sign in to your BookOra account",
+    "email": "Email",
+    "password": "Password",
+    "submit": "Login",
+    "devider": "Or continue with",
+    "google": "Google",
+    "footer": {
+      "text": "Don't have an account?",
+      "link": "Sign up"
+    }
+  },
+  "registerpage": {
+    "title": "Create an account",
+    "description": "Start your writing journey with BookOra",
+    "name": "Full Name",
+    "email": "Email",
+    "password": "Password",
+    "submit": "Register",
+    "devider": "Or continue with",
+    "google": "Google",
+    "footer": {
+      "text": "Already have an account?",
+      "link": "Sign in"
+    }
+  }
+}

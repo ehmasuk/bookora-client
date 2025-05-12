@@ -1,0 +1,33 @@
+{
+  "homepage": {
+    "title": "Crea libros hermosos con <highlight>BookOra</highlight>",
+    "description": "La mejor herramienta gratuita para crear libros que te ayuda a organizar capítulos, secciones y páginas con facilidad."
+  },
+  "loginpage": {
+    "title": "Bienvenido de nuevo",
+    "description": "Inicia sesión en tu cuenta de BookOra",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "submit": "Iniciar sesión",
+    "devider": "O continúa con",
+    "google": "Google",
+    "footer": {
+      "text": "¿No tienes una cuenta?",
+      "link": "Regístrate"
+    }
+  },
+  "registerpage": {
+    "title": "Crea una cuenta",
+    "description": "Empieza tu viaje de escritura con BookOra",
+    "name": "Nombre completo",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "submit": "Registrarse",
+    "devider": "O continúa con",
+    "google": "Google",
+    "footer": {
+      "text": "¿Ya tienes una cuenta?",
+      "link": "Inicia sesión"
+    }
+  }
+}
