@@ -1,7 +1,8 @@
+import axios from "axios";
+
 import Credentials from "next-auth/providers/credentials";
 
 import NextAuth, { type DefaultSession } from "next-auth";
-import axiosInstance from "./lib/axiosInstance";
 
 declare module "next-auth" {
   interface Session {
@@ -22,7 +23,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       authorize: async (credentials) => {
         try {
           const providedCredentials = { email: credentials.email, password: credentials.password };
-          const res = await axiosInstance.post("/auth/login", providedCredentials);
+          const res = await axios.post(process.env.NEXT_PUBLIC_API_URI + "/auth/login", providedCredentials);
           const { data } = res.data;
           if (!data) return null;
           const user = { name: data.name, email: data.email, id: data.id, token: data.token, image: data.image };
