@@ -1,9 +1,10 @@
 "use client"; // Error boundaries must be Client Components
 
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 import { useEffect } from "react";
 
-export default function Error({ error, reset }: { error: Error & { digest?: string }; reset: () => void }) {
+export default function Error({ error }: { error: Error & { digest?: string }; reset: () => void }) {
   useEffect(() => {
     // Log the error to an error reporting service
     console.error(error);
@@ -17,9 +18,9 @@ export default function Error({ error, reset }: { error: Error & { digest?: stri
           <p className="mb-4 text-3xl tracking-tight font-bold text-gray-900 md:text-4xl dark:text-white">Internal Server Error.</p>
           <p className="mb-4 text-3xl tracking-tight font-bold text-gray-900 md:text-4xl dark:text-white">{error.message}</p>
           <p className="mb-4 text-lg font-light text-gray-500 dark:text-gray-400">We are already working to solve the problem. </p>
-          <a href="/">
+          <Link href="/">
             <Button variant="primary">Go back home</Button>
-          </a>
+          </Link>
         </div>
       </div>
     </section>

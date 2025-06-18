@@ -1,5 +1,5 @@
 import { Editor } from "@tiptap/react";
-import { AlignCenterIcon, AlignLeftIcon, AlignRightIcon, BoldIcon, Heading1Icon, ItalicIcon, ListIcon, ListOrderedIcon, QuoteIcon, StrikethroughIcon } from "lucide-react";
+import { AlignCenterIcon, AlignLeftIcon, AlignRightIcon, BoldIcon, Heading1Icon, ItalicIcon, ListIcon, ListOrderedIcon, QuoteIcon } from "lucide-react";
 
 interface Props {
   editor: Editor;
@@ -19,7 +19,7 @@ function EditorFloatingToolbar({ editor }: Props) {
       <button
         onClick={() => editor.chain().focus().toggleHeading({ level: 3 }).run()}
         className={`${
-          editor.isActive('heading', { level: 1 }) ? "active" : ""
+          editor.isActive("heading", { level: 1 }) ? "active" : ""
         } h-8 grid place-items-center w-8 hover:bg-gray-200 dark:hover:bg-gray-700 [&.active]:bg-blue-100 dark:[&.active]:bg-blue-500 bg-gray-50 dark:bg-gray-700 text-black dark:text-white rounded cursor-pointer`}
       >
         <Heading1Icon className="w-4" />
@@ -57,7 +57,6 @@ function EditorFloatingToolbar({ editor }: Props) {
       >
         <AlignRightIcon className="w-4" />
       </button>
-
 
       <button
         onClick={() => editor.chain().focus().toggleBulletList().run()}

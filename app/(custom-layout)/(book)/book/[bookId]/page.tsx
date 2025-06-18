@@ -36,7 +36,7 @@ function BookTiptapEditor() {
     return () => {
       debouncedUpdateContent.cancel();
     };
-  }, []);
+  }, [debouncedUpdateContent]);
 
   // init the editor
   const editor = useEditor({

@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { BookText, CheckCircle, Edit3 } from "lucide-react";
 import { useSession } from "next-auth/react";
 import { useTranslations } from "next-intl";
+import Image from "next/image";
 import Link from "next/link";
 
 function HomePage() {
@@ -60,7 +61,7 @@ function HomePage() {
 
             <div className="relative mx-auto lg:mr-0">
               <div className="relative w-full max-w-[600px] aspect-[4/3] rounded-xl overflow-hidden shadow-2xl">
-                <img src="https://images.pexels.com/photos/8728380/pexels-photo-8728380.jpeg?auto=compress&cs=tinysrgb&w=600" alt="BookOra interface preview" className="object-cover w-full h-full" />
+                <Image width={600} height={400} src="/images/home-bg-1.webp" alt="BookOra interface preview" className="object-cover w-full h-full" />
                 <div className="absolute inset-0 bg-gradient-to-tr from-[#0070F3]/20 to-transparent"></div>
               </div>
 
