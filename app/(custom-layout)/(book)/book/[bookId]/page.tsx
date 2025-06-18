@@ -28,15 +28,15 @@ function BookTiptapEditor() {
       if (querySectionId) {
         updateData({ data: { content: value }, endpoint: `/sections/${querySectionId}` });
       }
-    }, 3000)
+    }, 2000)
   ).current;
 
   // Cancel debounce on unmount
-  useEffect(() => {
-    return () => {
-      debouncedUpdateContent.cancel();
-    };
-  }, [debouncedUpdateContent]);
+  // useEffect(() => {
+  //   return () => {
+  //     debouncedUpdateContent.cancel();
+  //   };
+  // }, [debouncedUpdateContent]);
 
   // init the editor
   const editor = useEditor({
