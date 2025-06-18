@@ -1,5 +1,3 @@
-import axios from "axios";
-
 import Credentials from "next-auth/providers/credentials";
 
 import NextAuth, { type DefaultSession } from "next-auth";
