@@ -10,9 +10,8 @@ import Placeholder from "@tiptap/extension-placeholder";
 import TextAlign from "@tiptap/extension-text-align";
 import { BubbleMenu, EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
-import debounce from "lodash.debounce";
 import { notFound, useSearchParams } from "next/navigation";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import useSWR from "swr";
 
 function BookTiptapEditor() {
@@ -22,21 +21,6 @@ function BookTiptapEditor() {
   const { data: res, isLoading, error } = useSWR(querySectionId ? `/sections/${querySectionId}` : null);
 
   const { updateData } = useUpdate();
-
-  const debouncedUpdateContent = useRef(
-    debounce(async (value: object) => {
-      if (querySectionId) {
-        updateData({ data: { content: value }, endpoint: `/sections/${querySectionId}` });
-      }
-    }, 2000)
-  ).current;
-
-  // Cancel debounce on unmount
-  // useEffect(() => {
-  //   return () => {
-  //     debouncedUpdateContent.cancel();
-  //   };
-  // }, [debouncedUpdateContent]);
 
   // init the editor
   const editor = useEditor({
@@ -53,7 +37,10 @@ function BookTiptapEditor() {
     ],
 
     onUpdate({ editor }) {
-      debouncedUpdateContent(editor.getJSON());
+      updateData({
+        data: { content: editor.getJSON() },
+        endpoint: `/sections/${querySectionId}`,
+      });
     },
 
     content: null,

@@ -9,7 +9,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@radix-ui/react-tooltip";
 import { BookMarkedIcon } from "lucide-react";
 import { useSession } from "next-auth/react";
-// import { useRouter } from "next/navigation";
+
+import { useRouter } from "next/navigation";
 
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -24,7 +25,7 @@ interface Props {
 function CreateBookModal({ children, tooltip = true }: Props) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
-  // const router = useRouter();
+  const router = useRouter();
 
   const { postData, loading } = usePost();
 
@@ -53,9 +54,11 @@ function CreateBookModal({ children, tooltip = true }: Props) {
     postData({
       url: "/books",
       data: book,
-      onSuccess: () => {
+      onSuccess: (res) => {
         toast.success("Book created successfully");
-        // router.push(`/book/${res?.book?.id}`);
+        const { book } = res as { book: { id: string } };
+        const newBookId = book?.id;
+        router.push(`/book/${newBookId}`);
         setIsOpen(false);
       },
       onError: (errMessage) => {
