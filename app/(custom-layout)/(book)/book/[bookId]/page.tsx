@@ -15,6 +15,19 @@ import { useEffect, useRef } from "react";
 import useSWR from "swr";
 
 function BookTiptapEditor() {
+  const searchParams = useSearchParams();
+  const querySectionId = searchParams.get("section");
+  const querySectionIdRef = useRef(querySectionId);
+
+  // Update the ref whenever querySectionId changes
+  useEffect(() => {
+    querySectionIdRef.current = querySectionId;
+  }, [querySectionId]);
+
+  const { data: res, isLoading, error } = useSWR(querySectionId ? `/sections/${querySectionId}` : null);
+
+  const { updateData } = useUpdate();
+
   const debounceRef = useRef<((content: Record<string, unknown>) => void) | null>(null);
 
   // Define the debounce function inside the component, but memoize it with useRef
@@ -23,18 +36,12 @@ function BookTiptapEditor() {
     debounceRef.current = (content: Record<string, unknown>) => {
       clearTimeout(timeout);
       timeout = setTimeout(() => {
-        if (querySectionId) {
-          updateData({ data: { content }, endpoint: `/sections/${querySectionId}` });
+        if (querySectionIdRef.current) {
+          updateData({ data: { content }, endpoint: `/sections/${querySectionIdRef.current}` });
         }
       }, 3000);
     };
   }
-  const searchParams = useSearchParams();
-  const querySectionId = searchParams.get("section");
-
-  const { data: res, isLoading, error } = useSWR(querySectionId ? `/sections/${querySectionId}` : null);
-
-  const { updateData } = useUpdate();
 
   // init the editor
   const editor = useEditor({
