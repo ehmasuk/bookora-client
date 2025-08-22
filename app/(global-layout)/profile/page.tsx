@@ -17,6 +17,8 @@ function ProfilePage() {
 
   const { data: res, error, isLoading } = useSWR(userId ? `/users/${userId}/books` : null);
 
+  console.log(res);
+
   if (error) {
     throw new Error(error.message);
   }

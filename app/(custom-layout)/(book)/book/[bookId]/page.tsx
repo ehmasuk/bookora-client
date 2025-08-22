@@ -11,10 +11,24 @@ import TextAlign from "@tiptap/extension-text-align";
 import { BubbleMenu, EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import { notFound, useSearchParams } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import useSWR from "swr";
 
 function BookTiptapEditor() {
+  const debounceRef = useRef<((content: Record<string, unknown>) => void) | null>(null);
+
+  // Define the debounce function inside the component, but memoize it with useRef
+  if (!debounceRef.current) {
+    let timeout: NodeJS.Timeout;
+    debounceRef.current = (content: Record<string, unknown>) => {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => {
+        if (querySectionId) {
+          updateData({ data: { content }, endpoint: `/sections/${querySectionId}` });
+        }
+      }, 3000);
+    };
+  }
   const searchParams = useSearchParams();
   const querySectionId = searchParams.get("section");
 
@@ -36,11 +50,8 @@ function BookTiptapEditor() {
       }),
     ],
 
-    onUpdate({ editor }) {
-      updateData({
-        data: { content: editor.getJSON() },
-        endpoint: `/sections/${querySectionId}`,
-      });
+    onUpdate: ({ editor }) => {
+      debounceRef.current?.(editor.getJSON());
     },
 
     content: null,
