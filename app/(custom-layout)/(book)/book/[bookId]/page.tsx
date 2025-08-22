@@ -39,7 +39,7 @@ function BookTiptapEditor() {
         if (querySectionIdRef.current) {
           updateData({ data: { content }, endpoint: `/sections/${querySectionIdRef.current}` });
         }
-      }, 3000);
+      }, 1000);
     };
   }
 

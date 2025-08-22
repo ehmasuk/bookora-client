@@ -5,8 +5,9 @@ import Link from "next/link";
 import AvatarDropdown from "../global/AvatarDropdown";
 import LanguageChanger from "../global/LanguageChanger";
 import Logo from "../global/Logo";
-import ThemeChanger from "../global/ThemeChanger";
 import { Button } from "../ui/button";
+import { AnimatedThemeToggler } from "@/components/magicui/animated-theme-toggler";
+
 
 function Navbar() {
   const { data: session, status } = useSession();
@@ -19,7 +20,8 @@ function Navbar() {
         <div className="flex items-center gap-10">
           <div className="flex items-center gap-2">
             <LanguageChanger />
-            <ThemeChanger />
+            <AnimatedThemeToggler className="p-2 cursor-pointer" />
+
           </div>
 
           {status === "authenticated" && session?.user && <AvatarDropdown image={session?.user?.image} name={session.user.name || ""} email={session.user.email || ""} />}

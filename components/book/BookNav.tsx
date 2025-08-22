@@ -8,10 +8,10 @@ import { useParams } from "next/navigation";
 import useSWR from "swr";
 import AvatarDropdown from "../global/AvatarDropdown";
 import Logo from "../global/Logo";
-import ThemeChanger from "../global/ThemeChanger";
 import TitleAsInput from "../global/TitleAsInput";
 import { Skeleton } from "../ui/skeleton";
 import { useSession } from "next-auth/react";
+import { AnimatedThemeToggler } from "../magicui/animated-theme-toggler";
 
 interface Props {
   isOpen: boolean;
@@ -60,7 +60,7 @@ function BookNav({ isOpen, setIsOpen }: Props) {
         )}
       </div>
       <div className="flex gap-3 items-center">
-        <ThemeChanger />
+        <AnimatedThemeToggler className="p-2" />
         <AvatarDropdown email={session?.user?.email || ""} name={session?.user?.name || ""} image={session?.user?.image || ""} />
       </div>
     </nav>
