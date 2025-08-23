@@ -1,7 +1,16 @@
 {
   "homepage": {
-    "title": "Create Beautiful Books with <highlight>BookOra</highlight>",
-    "description": "The ultimate free book creation tool that helps you organize chapters, sections, and pages with ease."
+    "title": "Create books online, share with World",
+    "description": "Bookora is your free online book creator. Write your stories, organize chapters, and bring your ideas to life.",
+    "features": {
+      "title": "Powerful Features for Every Writer",
+      "description": "From organizing chapters to exporting books, Bookora gives you all the tools you need to write with ease and confidence."
+      
+    },
+    "reviews": {
+      "title": "Loved by thousands of people",
+      "description": "Here are what some of our users have to say about BookOra."
+    }
   },
   "loginpage": {
     "title": "Welcome back",

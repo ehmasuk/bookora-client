@@ -1085,7 +1085,7 @@
 
 "@tabler/icons-react@^3.34.1":
   version "3.34.1"
-  resolved "https://registry.npmjs.org/@tabler/icons-react/-/icons-react-3.34.1.tgz"
+  resolved "https://registry.yarnpkg.com/@tabler/icons-react/-/icons-react-3.34.1.tgz#852b8efcab5382e44cc0f09b3de7d25ef3cba6f9"
   integrity sha512-Ld6g0NqOO05kyyHsfU8h787PdHBm7cFmOycQSIrGp45XcXYDuOK2Bs0VC4T2FWSKZ6bx5g04imfzazf/nqtk1A==
   dependencies:
     "@tabler/icons" "3.34.1"
@@ -2556,9 +2556,9 @@ form-data@^4.0.0:
     es-set-tostringtag "^2.1.0"
     mime-types "^2.1.12"
 
-framer-motion@^12.23.12, framer-motion@^12.9.2:
+framer-motion@^12.23.12:
   version "12.23.12"
-  resolved "https://registry.npmjs.org/framer-motion/-/framer-motion-12.23.12.tgz"
+  resolved "https://registry.yarnpkg.com/framer-motion/-/framer-motion-12.23.12.tgz#80cf6fd7c111073a0c558e336c85ca36cca80d3d"
   integrity sha512-6e78rdVtnBvlEVgu6eFEAgG9v3wLnYEboM8I5O5EXvfKC8gxGQB8wXJdhkMy10iVcn05jl6CNw7/HTsTCfwcWg==
   dependencies:
     motion-dom "^12.23.12"
@@ -3240,7 +3240,7 @@ motion-utils@^12.23.6:
 
 motion@^12.23.12:
   version "12.23.12"
-  resolved "https://registry.npmjs.org/motion/-/motion-12.23.12.tgz"
+  resolved "https://registry.yarnpkg.com/motion/-/motion-12.23.12.tgz#9f3552636c1e94911eee42e6f85db8f60db83c19"
   integrity sha512-8jCD8uW5GD1csOoqh1WhH1A6j5APHVE15nuBkFeRiMzYBdRwyAHmSP/oXSuW0WJPZRXTFdBoG4hY9TFWNhhwng==
   dependencies:
     framer-motion "^12.23.12"

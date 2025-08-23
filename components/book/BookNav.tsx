@@ -9,9 +9,8 @@ import useSWR from "swr";
 import AvatarDropdown from "../global/AvatarDropdown";
 import Logo from "../global/Logo";
 import TitleAsInput from "../global/TitleAsInput";
-import { Skeleton } from "../ui/skeleton";
-import { useSession } from "next-auth/react";
 import { AnimatedThemeToggler } from "../magicui/animated-theme-toggler";
+import { Skeleton } from "../ui/skeleton";
 
 interface Props {
   isOpen: boolean;
@@ -19,9 +18,6 @@ interface Props {
 }
 
 function BookNav({ isOpen, setIsOpen }: Props) {
-
-    const { data: session } = useSession();
-
   const bookIsUpdating = useStoreState<StoreType>((state) => state.book.bookIsUpdating);
 
   const { updateData } = useUpdate();
@@ -61,7 +57,7 @@ function BookNav({ isOpen, setIsOpen }: Props) {
       </div>
       <div className="flex gap-3 items-center">
         <AnimatedThemeToggler className="p-2" />
-        <AvatarDropdown email={session?.user?.email || ""} name={session?.user?.name || ""} image={session?.user?.image || ""} />
+        <AvatarDropdown />
       </div>
     </nav>
   );

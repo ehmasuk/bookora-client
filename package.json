@@ -39,7 +39,7 @@
     "clsx": "^2.1.1",
     "cobe": "^0.6.4",
     "easy-peasy": "^6.1.0",
-    "framer-motion": "^12.9.2",
+    "framer-motion": "^12.23.12",
     "lodash.debounce": "^4.0.8",
     "lucide-react": "^0.541.0",
     "motion": "^12.23.12",
