@@ -4,13 +4,17 @@ import useUpdate from "@/hooks/useUpdate";
 import { StoreType } from "@/store/store";
 import { useStoreState } from "easy-peasy";
 import { LoaderIcon, MenuIcon } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { useParams } from "next/navigation";
+import { useNextStep } from "nextstepjs";
 import useSWR from "swr";
 import AvatarDropdown from "../global/AvatarDropdown";
 import Logo from "../global/Logo";
 import TitleAsInput from "../global/TitleAsInput";
 import { AnimatedThemeToggler } from "../magicui/animated-theme-toggler";
+import { Button } from "../ui/button";
 import { Skeleton } from "../ui/skeleton";
+import LanguageChanger from "../global/LanguageChanger";
 
 interface Props {
   isOpen: boolean;
@@ -21,9 +25,11 @@ function BookNav({ isOpen, setIsOpen }: Props) {
   const bookIsUpdating = useStoreState<StoreType>((state) => state.book.bookIsUpdating);
 
   const { updateData } = useUpdate();
-
+  const { startNextStep } = useNextStep();
   // get book id from url
   const { bookId } = useParams();
+
+  const t = useTranslations("bookpage");
 
   // fetch book data and set in bookinfo and chapters in store from the book data
   const { data: res, error, isLoading } = useSWR(bookId ? `/books/${bookId}` : null);
@@ -46,20 +52,25 @@ function BookNav({ isOpen, setIsOpen }: Props) {
 
         {isLoading && <Skeleton className="w-50 h-[20px] mt-2" />}
 
-        {!isLoading && <TitleAsInput title={book?.title} handleSubmit={(title) => updateData({ data: { title }, endpoint: `/books/${bookId}` })} />}
-
-        {bookIsUpdating && (
-          <div className="flex text-blue-500 items-center text-sm gap-1">
-            Saving
-            <LoaderIcon className="w-4 dark:text-white cursor-pointer animate-spin" />
+        {!isLoading && (
+          <div id="book-name">
+            <TitleAsInput title={book?.title} handleSubmit={(title) => updateData({ data: { title }, endpoint: `/books/${bookId}` })} />
           </div>
         )}
 
-  
+        {bookIsUpdating && (
+          <div className="flex text-blue-500 items-center text-sm gap-1">
+            {t("saving")}
+            <LoaderIcon className="w-4 dark:text-white cursor-pointer animate-spin" />
+          </div>
+        )}
       </div>
       <div className="flex gap-3 items-center">
+        
         <AvatarDropdown />
-        <AnimatedThemeToggler className="p-2" />
+        <LanguageChanger/>
+        <AnimatedThemeToggler />
+        <Button variant="black" onClick={() => startNextStep("mainTour")}>Help</Button>
       </div>
     </nav>
   );

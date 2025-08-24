@@ -39,12 +39,6 @@ export default function LanguageChanger() {
             <SelectItem value="es" className="hover:bg-blue-100 cursor-pointer">
               <span className="truncate">Español</span>
             </SelectItem>
-            <SelectItem value="fr" className="hover:bg-blue-100 cursor-pointer">
-              <span className="truncate">Français</span>
-            </SelectItem>
-            <SelectItem value="it" className="hover:bg-blue-100 cursor-pointer">
-              <span className="truncate">Italiano</span>
-            </SelectItem>
           </SelectContent>
         </Select>
       )}

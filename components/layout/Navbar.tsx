@@ -26,7 +26,7 @@ function Navbar() {
           {status === "unauthenticated" && (
             <>
               <Link href="/register">
-                <Button className="bg-black dark:bg-white dark:hover:bg-gray-100 hover:bg-slate-800 text-white dark:text-black">Get Started</Button>
+                <Button variant="black">Get Started</Button>
               </Link>
               <Link href="/login">
                 <Button variant="outline">Log In</Button>

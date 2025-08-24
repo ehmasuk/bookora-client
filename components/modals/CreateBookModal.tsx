@@ -11,6 +11,7 @@ import { BookMarkedIcon } from "lucide-react";
 import { useSession } from "next-auth/react";
 
 import { useRouter } from "next/navigation";
+import { useNextStep } from "nextstepjs";
 
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -20,11 +21,12 @@ import { z } from "zod";
 interface Props {
   children: React.ReactNode;
   tooltip?: boolean;
+  eligableToShowStepsGuide?: boolean;
 }
 
-function CreateBookModal({ children, tooltip = true }: Props) {
+function CreateBookModal({ children, tooltip = true, eligableToShowStepsGuide = false }: Props) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-
+  const { startNextStep } = useNextStep();
   const router = useRouter();
 
   const { postData, loading } = usePost();
@@ -60,6 +62,12 @@ function CreateBookModal({ children, tooltip = true }: Props) {
         const newBookId = book?.id;
         router.push(`/book/${newBookId}`);
         setIsOpen(false);
+
+        if (eligableToShowStepsGuide) {
+          setTimeout(() => {
+            startNextStep("mainTour");
+          }, 2000);
+        }
       },
       onError: (errMessage) => {
         toast.error(errMessage);

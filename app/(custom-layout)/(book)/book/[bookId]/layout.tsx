@@ -2,8 +2,10 @@
 
 import BookNav from "@/components/book/BookNav";
 import BookSidebar from "@/components/book/BookSidebar";
+
 import { motion } from "framer-motion";
 import { notFound, useParams } from "next/navigation";
+
 import { ReactNode, useState } from "react";
 import useSWR from "swr";
 

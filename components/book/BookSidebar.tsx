@@ -15,6 +15,7 @@ import Logo from "../global/Logo";
 import TitleBox from "../global/TitleBox";
 import CreateChapterModal from "../modals/CreateChapterModal";
 import { Skeleton } from "../ui/skeleton";
+import { useTranslations } from "next-intl";
 
 interface Props {
   isOpen: boolean;
@@ -24,6 +25,8 @@ interface Props {
 function BookSidebar({ isOpen, setIsOpen }: Props) {
   // get book id from url
   const { bookId } = useParams();
+
+    const t = useTranslations("bookpage");
 
   // fetch book data and set in bookinfo and chapters in store from the book data
   const { data: res, error, isLoading } = useSWR(bookId ? `/books/${bookId}` : null);
@@ -71,7 +74,9 @@ function BookSidebar({ isOpen, setIsOpen }: Props) {
       {/* header => toggler */}
       <div className="flex w-full p-1.5 justify-between items-center">
         <Logo />
-        <MenuIcon onClick={() => setIsOpen(!isOpen)} className="w-4 cursor-pointer text-slate-600 dark:text-slate-200" />
+        <div id="book-sidebar-toggler">
+          <MenuIcon onClick={() => setIsOpen(!isOpen)} className="w-4 cursor-pointer text-slate-600 dark:text-slate-200" />
+        </div>
       </div>
 
       {/* body */}
@@ -93,11 +98,11 @@ function BookSidebar({ isOpen, setIsOpen }: Props) {
               <div onClick={() => setChapterIsOpen(!chapterIsOpen)} className="w-4 rounded hover:bg-slate-200 dark:hover:bg-blue-400 dark:hover:text-white">
                 {allChapters.length > 0 && <ChevronRight className={`w-4 outline-none transition ${chapterIsOpen ? "rotate-90" : ""}`} />}
               </div>
-              <p>Chapters</p>
+              <p>{t("chapters")}</p>
             </div>
             <div className="flex gap-2 items-center">
               <CreateChapterModal bookId={book?.id} chapterNumber={allChapters.length + 1}>
-                <Plus className="p-1 transition text-gray-500 dark:text-gray-400 size-6 rounded hover:bg-gray-200 dark:hover:bg-gray-700" />
+                <Plus id="create-new-chapter-icon" className="p-1 transition text-gray-500 dark:text-gray-400 size-6 rounded hover:bg-gray-200 dark:hover:bg-gray-700" />
               </CreateChapterModal>
             </div>
           </div>

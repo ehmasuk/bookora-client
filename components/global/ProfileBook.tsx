@@ -1,5 +1,6 @@
 import "@/public/css/profile-book.css";
 import { BookType } from "@/types/book";
+import { Edit, Trash } from "lucide-react";
 import Link from "next/link";
 
 function ProfileBook({ title, id, visibility }: BookType) {
@@ -44,9 +45,21 @@ function ProfileBook({ title, id, visibility }: BookType) {
       <div className="text-left">
         <h1>{title}</h1>
         <p className="text-xs mb-2 text-gray-600 dark:text-gray-300">{visibility}</p>
-        <Link href={`/book/${id}`} className="text-sm text-blue-600 hover:text-blue-800">
-          Continue writing
-        </Link>
+        <div className="flex flex-col space-y-2">
+          <div className="flex items-center gap-5">
+            <Link href={`/book/${id}`}>
+              <div className="text-sm cursor-pointer flex items-center gap-1 text-blue-500 hover:text-blue-600">
+                <Edit size={15} />
+                Edit
+              </div>
+            </Link>
+
+            <div className="text-sm cursor-pointer flex items-center gap-1 text-red-500 hover:text-red-600">
+              <Trash size={15} />
+              Delete
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

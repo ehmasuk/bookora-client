@@ -4,24 +4,22 @@ import ProfileBook from "@/components/global/ProfileBook";
 import CreateBookModal from "@/components/modals/CreateBookModal";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-// import { Badge } from "@/components/ui/badge"
-import { Input } from "@/components/ui/input";
-import { BookOpen, Plus, Search, Settings, User } from "lucide-react";
+import { BookOpen, Plus, Settings, User } from "lucide-react";
 
 import Empty from "@/components/global/Empty";
 import { Skeleton } from "@/components/ui/skeleton";
 import { BookType } from "@/types/book";
 import { useSession } from "next-auth/react";
+import { useTranslations } from "next-intl";
 import useSWR from "swr";
 
 export default function BookManagementDashboard() {
-  const { data: session, status } = useSession();
+  const { data: session } = useSession();
+  const t = useTranslations("profilepage");
 
   const userId = session?.user?.id;
 
   const { data: res, error, isLoading } = useSWR(userId ? `/users/${userId}/books` : null);
-
-  console.log(res);
 
   if (error) {
     throw new Error(error.message);
@@ -53,11 +51,11 @@ export default function BookManagementDashboard() {
           <nav className="space-y-2">
             <Button variant="ghost" className="w-full justify-start gap-3 text-sidebar-foreground hover:bg-sidebar-accent/20">
               <BookOpen className="w-4 h-4" />
-              My Books
+              {t("sidebar.my_books")}
             </Button>
             <Button variant="ghost" className="w-full justify-start gap-3 text-muted-foreground hover:bg-sidebar-accent/20">
               <Settings className="w-4 h-4" />
-              Settings
+              {t("sidebar.settings")}
             </Button>
           </nav>
         </div>
@@ -67,17 +65,16 @@ export default function BookManagementDashboard() {
           {/* Header */}
           <div className="flex items-center justify-between mb-8">
             <div>
-              <h2 className="text-3xl font-bold text-foreground mb-2">My Books</h2>
-              <p className="text-muted-foreground">Manage your personal book collection</p>
+              <h2 className="text-3xl font-bold text-foreground mb-2">{t("header.title")}</h2>
+              <p className="text-muted-foreground">{t("header.description")}</p>
             </div>
-            <CreateBookModal tooltip={false}>
+            <CreateBookModal eligableToShowStepsGuide={books?.length === 0 ? true : false} tooltip={false}>
               <Button className="gap-2 bg-primary dark:text-white text-primary-foreground hover:bg-primary/90">
                 <Plus className="w-4 h-4" />
-                Create a new book
+                {t("header.create_button")}
               </Button>
             </CreateBookModal>
           </div>
-
 
           {/* Books Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-3 px-3 gap-6">
@@ -88,7 +85,7 @@ export default function BookManagementDashboard() {
             {isLoading && [...Array(5)].map((_, i) => <Skeleton key={i} className="w-full h-30" />)}
           </div>
 
-          {!isLoading && books?.length === 0 && <Empty size="lg" text="You haven't created any book yet" />}
+          {!isLoading && books?.length === 0 && <Empty size="lg" text={t("empty_message")} />}
         </div>
       </div>
     </div>

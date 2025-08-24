@@ -1,6 +1,12 @@
+import { useTranslations } from "next-intl";
 import Logo from "../global/Logo";
 
 function Footer() {
+  const t = useTranslations("footer");
+  const productLinks = t.raw("product.links");
+  const resourceLinks = t.raw("resources.links");
+  const companyLinks = t.raw("company.links");
+
   return (
     <footer className="bg-white text-gray-800 dark:bg-black dark:text-gray-200 py-12 border-t border-gray-200 dark:border-gray-800">
       <div className="max-w-7xl mx-auto px-4">
@@ -9,7 +15,7 @@ function Footer() {
           <div>
             <Logo />
             <p className="text-gray-600 dark:text-gray-400 my-4">
-              Free online book creator. Write your stories, organize chapters, and bring your ideas to life.
+              {t("description")}
             </p>
             <div className="flex space-x-4">
               {/* Twitter */}
@@ -66,28 +72,26 @@ function Footer() {
 
           {/* Product */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Product</h3>
+            <h3 className="text-lg font-semibold mb-4">{t("product.title")}</h3>
             <ul className="space-y-2">
-              {["Features", "Pricing", "Integrations", "Case Studies"].map(
-                (item) => (
-                  <li key={item}>
-                    <a
-                      href="#"
-                      className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
-                    >
-                      {item}
-                    </a>
-                  </li>
-                )
-              )}
+              {productLinks.map((item: string) => (
+                <li key={item}>
+                  <a
+                    href="#"
+                    className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
+                  >
+                    {item}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
           {/* Resources */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Resources</h3>
+            <h3 className="text-lg font-semibold mb-4">{t("resources.title")}</h3>
             <ul className="space-y-2">
-              {["Documentation", "Blog", "Guides", "Support"].map((item) => (
+              {resourceLinks.map((item: string) => (
                 <li key={item}>
                   <a
                     href="#"
@@ -102,27 +106,25 @@ function Footer() {
 
           {/* Company */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Company</h3>
+            <h3 className="text-lg font-semibold mb-4">{t("company.title")}</h3>
             <ul className="space-y-2">
-              {["About Us", "Careers", "Contact", "Privacy Policy"].map(
-                (item) => (
-                  <li key={item}>
-                    <a
-                      href="#"
-                      className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
-                    >
-                      {item}
-                    </a>
-                  </li>
-                )
-              )}
+              {companyLinks.map((item: string) => (
+                <li key={item}>
+                  <a
+                    href="#"
+                    className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
+                  >
+                    {item}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
 
         {/* Bottom Section */}
         <div className="border-t border-gray-200 dark:border-gray-800 mt-12 pt-8 text-center text-gray-600 dark:text-gray-400">
-          <p>© 2025 BookOra. All rights reserved.</p>
+          <p>{t("copyright")}</p>
         </div>
       </div>
     </footer>

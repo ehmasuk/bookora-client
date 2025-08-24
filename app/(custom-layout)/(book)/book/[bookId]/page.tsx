@@ -10,6 +10,7 @@ import Placeholder from "@tiptap/extension-placeholder";
 import TextAlign from "@tiptap/extension-text-align";
 import { BubbleMenu, EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
+import { useTranslations } from "next-intl";
 import { notFound, useSearchParams } from "next/navigation";
 import { useEffect, useRef } from "react";
 import useSWR from "swr";
@@ -18,6 +19,7 @@ function BookTiptapEditor() {
   const searchParams = useSearchParams();
   const querySectionId = searchParams.get("section");
   const querySectionIdRef = useRef(querySectionId);
+  const t = useTranslations("bookpage");
 
   // Update the ref whenever querySectionId changes
   useEffect(() => {
@@ -49,7 +51,7 @@ function BookTiptapEditor() {
       StarterKit,
       CharacterCount,
       Placeholder.configure({
-        placeholder: "Start writing you imagination …",
+        placeholder: t("placeholder"),
       }),
       TextAlign.configure({
         defaultAlignment: "left",
@@ -80,7 +82,7 @@ function BookTiptapEditor() {
   }, [res, editor]);
 
   if (!editor) {
-    return <>Loading..</>;
+    return <>{t("loading")}</>;
   }
   if (!querySectionId) return <SelectSection />;
 
@@ -104,8 +106,8 @@ function BookTiptapEditor() {
         <EditorToolbar editor={editor} />
 
         <div className="text-xs">
-          <span className="font-semibold text-slate-800 dark:text-white">{editor?.storage.characterCount.characters()}</span> characters,{" "}
-          <span className="font-semibold text-slate-800 dark:text-white">{editor?.storage.characterCount.words()}</span> words
+          <span className="font-semibold text-slate-800 dark:text-white">{editor?.storage.characterCount.characters()}</span> {t("characters")},{" "}
+          <span className="font-semibold text-slate-800 dark:text-white">{editor?.storage.characterCount.words()}</span> {t("words")}
         </div>
       </div>
 
