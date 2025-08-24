@@ -1,0 +1,41 @@
+{
+  "homepage": {
+    "title": "Erstelle Bücher online, teile sie mit der Welt",
+    "description": "Bookora ist dein kostenloser Online-Bucherstellungs-Tool. Schreibe deine Geschichten, organisiere Kapitel und erwecke deine Ideen zum Leben.",
+    "features": {
+      "title": "Leistungsstarke Funktionen für jeden Autor",
+      "description": "Von der Organisation von Kapiteln bis zum Exportieren von Büchern – Bookora bietet dir alle Werkzeuge, die du brauchst, um mühelos und selbstbewusst zu schreiben."
+    },
+    "reviews": {
+      "title": "Geliebt von Tausenden von Menschen",
+      "description": "Das sagen einige unserer Nutzer über BookOra."
+    }
+  },
+  "loginpage": {
+    "title": "Willkommen zurück",
+    "description": "Melde dich bei deinem BookOra-Konto an",
+    "email": "E-Mail",
+    "password": "Passwort",
+    "submit": "Anmelden",
+    "devider": "Oder fortfahren mit",
+    "google": "Google",
+    "footer": {
+      "text": "Noch kein Konto?",
+      "link": "Registrieren"
+    }
+  },
+  "registerpage": {
+    "title": "Konto erstellen",
+    "description": "Beginne deine Schreibreise mit BookOra",
+    "name": "Vollständiger Name",
+    "email": "E-Mail",
+    "password": "Passwort",
+    "submit": "Registrieren",
+    "devider": "Oder fortfahren mit",
+    "google": "Google",
+    "footer": {
+      "text": "Hast du bereits ein Konto?",
+      "link": "Anmelden"
+    }
+  }
+}

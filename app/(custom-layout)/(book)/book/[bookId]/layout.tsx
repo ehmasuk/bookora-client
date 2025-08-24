@@ -31,7 +31,7 @@ function BookLayout({ children }: Props) {
       </motion.div>
       <div className="flex-1">
         <BookNav isOpen={sidebarIsOpen} setIsOpen={setSidebarIsOpen} />
-        <div className="h-[calc(100vh-100px)] overflow-y-auto px-5">
+        <div className="h-[calc(100vh-100px)] overflow-y-auto px-5 relative">
           <div className="max-w-4xl mx-auto">{children}</div>
         </div>
       </div>

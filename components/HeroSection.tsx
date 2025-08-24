@@ -2,10 +2,16 @@
 import { useTranslations } from "next-intl";
 
 import { motion } from "motion/react";
+import { useSession } from "next-auth/react";
+import Image from "next/image";
+import Link from "next/link";
 import { GridBg } from "./ui/GridBg";
 
 export default function HeroSection() {
   const t = useTranslations("homepage");
+
+  const { status } = useSession();
+
   return (
     <GridBg>
       <div className="relative mx-auto flex max-w-4xl flex-col items-center justify-center">
@@ -57,12 +63,16 @@ export default function HeroSection() {
             }}
             className="relative z-10 mt-8 flex flex-wrap items-center justify-center gap-4"
           >
-            <button className="w-60 transform rounded-lg bg-black px-6 py-2 font-medium text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-gray-800 dark:bg-white dark:text-black dark:hover:bg-gray-200">
-              Start Writing
-            </button>
-            <button className="w-60 transform rounded-lg border border-gray-300 bg-white px-6 py-2 font-medium text-black transition-all duration-300 hover:-translate-y-0.5 hover:bg-gray-100 dark:border-gray-700 dark:bg-black dark:text-white dark:hover:bg-gray-900">
-              Explore Books
-            </button>
+            <Link href={status === "authenticated" ? "/profile" : "/login"}>
+              <button className="w-60 transform rounded-lg bg-black px-6 py-2 font-medium text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-gray-800 dark:bg-white dark:text-black dark:hover:bg-gray-200">
+                Start Writing
+              </button>
+            </Link>
+            <Link href={status === "authenticated" ? "/profile" : "/login"}>
+              <button className="w-60 transform rounded-lg border border-gray-300 bg-white px-6 py-2 font-medium text-black transition-all duration-300 hover:-translate-y-0.5 hover:bg-gray-100 dark:border-gray-700 dark:bg-black dark:text-white dark:hover:bg-gray-900">
+                Explore Books
+              </button>
+            </Link>
           </motion.div>
 
           <motion.div
@@ -81,7 +91,7 @@ export default function HeroSection() {
             className="relative z-10 mt-20 rounded-3xl border border-neutral-200 bg-neutral-100 p-4 shadow-md dark:border-neutral-800 dark:bg-neutral-900"
           >
             <div className="w-full overflow-hidden rounded-xl border border-gray-300 dark:border-gray-700">
-              <img src="https://assets.aceternity.com/pro/aceternity-landing.webp" alt="Landing page preview" className="aspect-[16/9] h-auto w-full object-cover" height={1000} width={1000} />
+              <Image src="/images/hero.png" alt="Landing page preview" className="aspect-[16/9] h-auto w-full object-contain" height={1000} width={1000} />
             </div>
           </motion.div>
         </div>

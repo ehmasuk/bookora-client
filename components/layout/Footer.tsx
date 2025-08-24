@@ -9,7 +9,7 @@ function Footer() {
           <div>
             <Logo />
             <p className="text-gray-600 dark:text-gray-400 my-4">
-              AI-powered business communication and automation platform
+              Free online book creator. Write your stories, organize chapters, and bring your ideas to life.
             </p>
             <div className="flex space-x-4">
               {/* Twitter */}

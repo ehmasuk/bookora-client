@@ -1,16 +1,20 @@
 "use client";
 
-import BookCard from "@/components/global/BookCard";
-import Empty from "@/components/global/Empty";
+import ProfileBook from "@/components/global/ProfileBook";
 import CreateBookModal from "@/components/modals/CreateBookModal";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
+// import { Badge } from "@/components/ui/badge"
+import { Input } from "@/components/ui/input";
+import { BookOpen, Plus, Search, Settings, User } from "lucide-react";
+
+import Empty from "@/components/global/Empty";
 import { Skeleton } from "@/components/ui/skeleton";
 import { BookType } from "@/types/book";
 import { useSession } from "next-auth/react";
-import Image from "next/image";
 import useSWR from "swr";
 
-function ProfilePage() {
+export default function BookManagementDashboard() {
   const { data: session, status } = useSession();
 
   const userId = session?.user?.id;
@@ -26,77 +30,67 @@ function ProfilePage() {
   const books = res?.data;
 
   return (
-    <div className="container mx-auto py-8 px-4">
-      <div className="grid gap-8 md:grid-cols-3">
-        <div className="md:col-span-1">
-          <div className="rounded-lg bg-card text-card-foreground border-0 shadow-md">
-            <div className="flex flex-col space-y-1.5 p-6 bg-gradient-to-r bg-blue-600 dark:bg-slate-800 rounded-t-lg">
-              <h3 className="text-2xl font-semibold leading-none tracking-tight text-white">Personal Information</h3>
-              <p className="text-sm text-blue-100">Manage your profile details</p>
-            </div>
-            <div className="p-6 pt-6">
-              <div className="flex flex-col items-center space-y-4 mb-6">
-                <span className="relative flex shrink-0 overflow-hidden rounded-full h-24 w-24 border-2 border-blue-300 shadow-sm">
-                  {status !== "loading" && <Image loading="lazy" src={session?.user?.image || "/images/profile-avatar.png"} alt="avatar" width={150} height={150} />}
-                </span>
-                <Button variant="outline">Change profile image</Button>
-              </div>
-              <div className="space-y-4">
-                <div className="space-y-2">
-                  <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" htmlFor="name">
-                    Name
-                  </label>
-                  <input
-                    className="flex h-10 w-full rounded-md border bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 border-blue-200 focus-visible:ring-blue-400"
-                    id="name"
-                    defaultValue={session?.user?.name || ""}
-                  />
-                </div>
-                <div className="space-y-2">
-                  <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" htmlFor="email">
-                    Email
-                  </label>
-                  <input
-                    className="flex h-10 w-full rounded-md border bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 border-blue-200 focus-visible:ring-blue-400"
-                    readOnly
-                    value={session?.user?.email || ""}
-                  />
-                </div>
-
-                <Button variant="primary" type="submit" className="w-full">
-                  Change Password
-                </Button>
+    <div className="min-h-screen bg-background">
+      <div className="flex">
+        {/* Sidebar */}
+        <div className="w-72 bg-sidebar border-r border-sidebar-border p-6 min-h-screen">
+          {/* User Profile */}
+          <div className="bg-sidebar-accent/10 rounded-lg p-4 mb-6">
+            <div className="flex items-center gap-3 mb-3">
+              <Avatar className="w-10 h-10">
+                <AvatarFallback className="bg-sidebar-accent text-sidebar-accent-foreground">
+                  <User className="w-5 h-5" />
+                </AvatarFallback>
+              </Avatar>
+              <div className="flex-1 min-w-0">
+                <p className="text-sm font-medium text-sidebar-foreground truncate">{session?.user?.name || ""}</p>
+                <p className="text-xs text-muted-foreground truncate">{session?.user?.email || ""}</p>
               </div>
             </div>
           </div>
+
+          {/* Navigation */}
+          <nav className="space-y-2">
+            <Button variant="ghost" className="w-full justify-start gap-3 text-sidebar-foreground hover:bg-sidebar-accent/20">
+              <BookOpen className="w-4 h-4" />
+              My Books
+            </Button>
+            <Button variant="ghost" className="w-full justify-start gap-3 text-muted-foreground hover:bg-sidebar-accent/20">
+              <Settings className="w-4 h-4" />
+              Settings
+            </Button>
+          </nav>
         </div>
-        <div className="md:col-span-2">
-          <div className="rounded-lg bg-card text-card-foreground border-0 shadow-md">
-            <div className="flex flex-col space-y-1.5 p-6 dark:bg-slate-800 bg-blue-100 runded-t-lg">
-              <div className="flex flex-row items-center justify-between">
-                <div>
-                  <h3 className="text-2xl font-semibold leading-none tracking-tight text-slate-800 dark:text-white">My Books</h3>
-                </div>
-                <CreateBookModal tooltip={false}>
-                  <Button variant="primary">Create a new book</Button>
-                </CreateBookModal>
-              </div>
-            </div>
-            <div className="p-6">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                {books?.map((book: BookType, index: number) => (
-                  <BookCard chapters={book.chapters} image={book.image} title={book.title} id={book.id} key={index} summary={book.summary} author={book.author} visibility={book.visibility} />
-                ))}
 
-                {isLoading && [...Array(5)].map((_, i) => <Skeleton key={i} className="w-full h-30" />)}
-              </div>
+        {/* Main Content */}
+        <div className="flex-1 p-8">
+          {/* Header */}
+          <div className="flex items-center justify-between mb-8">
+            <div>
+              <h2 className="text-3xl font-bold text-foreground mb-2">My Books</h2>
+              <p className="text-muted-foreground">Manage your personal book collection</p>
             </div>
-            {!isLoading && books?.length === 0 && <Empty size="lg" text="You haven't created any book yet" />}
+            <CreateBookModal tooltip={false}>
+              <Button className="gap-2 bg-primary dark:text-white text-primary-foreground hover:bg-primary/90">
+                <Plus className="w-4 h-4" />
+                Create a new book
+              </Button>
+            </CreateBookModal>
           </div>
+
+
+          {/* Books Grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 px-3 gap-6">
+            {books?.map((book: BookType, index: number) => (
+              <ProfileBook chapters={book.chapters} image={book.image} title={book.title} id={book.id} key={index} summary={book.summary} author={book.author} visibility={book.visibility} />
+            ))}
+
+            {isLoading && [...Array(5)].map((_, i) => <Skeleton key={i} className="w-full h-30" />)}
+          </div>
+
+          {!isLoading && books?.length === 0 && <Empty size="lg" text="You haven't created any book yet" />}
         </div>
       </div>
     </div>
   );
 }
-
-export default ProfilePage;

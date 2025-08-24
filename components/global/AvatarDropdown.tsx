@@ -1,6 +1,6 @@
 "use client";
 
-import { LogOutIcon, PinIcon, User } from "lucide-react";
+import { ChevronDown, LogOutIcon, PinIcon, User } from "lucide-react";
 
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import useAuth from "@/hooks/useAuth";
@@ -12,7 +12,10 @@ export default function AvatarDropdown() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <User size={16} />
+        <div className="flex h-[36px] gap-1 items-center cursor-pointer p-2 rounded-md border">
+          <User size={18} />
+          <ChevronDown size={15} className="opacity-50" />
+        </div>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="max-w-64">
         <DropdownMenuGroup>

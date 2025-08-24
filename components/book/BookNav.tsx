@@ -35,7 +35,7 @@ function BookNav({ isOpen, setIsOpen }: Props) {
   const book = res?.data;
 
   return (
-    <nav className="flex border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 w-full sticky top-0 flex-wrap gap-2 items-center justify-between px-8 py-2 dark:bg-gray-800">
+    <nav className="flex border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 w-full sticky top-0 flex-wrap gap-2 items-center justify-between px-8 py-2 dark:bg-gray-900">
       <div className="flex gap-3 items-center">
         {!isOpen && (
           <>
@@ -54,10 +54,12 @@ function BookNav({ isOpen, setIsOpen }: Props) {
             <LoaderIcon className="w-4 dark:text-white cursor-pointer animate-spin" />
           </div>
         )}
+
+  
       </div>
       <div className="flex gap-3 items-center">
-        <AnimatedThemeToggler className="p-2" />
         <AvatarDropdown />
+        <AnimatedThemeToggler className="p-2" />
       </div>
     </nav>
   );

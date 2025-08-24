@@ -69,7 +69,7 @@ function BookSidebar({ isOpen, setIsOpen }: Props) {
       }w-[350px] h-screen transition duration-100 shadow border border-slate-200 dark:border-gray-700 flex flex-col p-1 bg-slate-50 dark:bg-gray-900`}
     >
       {/* header => toggler */}
-      <div className="flex w-full p-1.5 bg-slate-100 dark:bg-slate-900 justify-between items-center">
+      <div className="flex w-full p-1.5 justify-between items-center">
         <Logo />
         <MenuIcon onClick={() => setIsOpen(!isOpen)} className="w-4 cursor-pointer text-slate-600 dark:text-slate-200" />
       </div>
@@ -131,8 +131,9 @@ function BookSidebar({ isOpen, setIsOpen }: Props) {
       </div>
 
       {/* footer => settings */}
-      <div className="p-2 text-center">
-        <p className="text-slate-500 text-sm dark:text-white">Bookora</p>
+      <div className="p-2 flex justify-between">
+        <p className="text-slate-400 text-xs dark:text-slate-500">A product by <a href="https://ehmasuk.vercel.app/" target="_blank" rel="noreferrer">Eh Masuk</a></p>
+        <p className="text-slate-400 text-xs dark:text-slate-500">Bookora v 2.1.1</p>
       </div>
     </div>
   );

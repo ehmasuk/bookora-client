@@ -1,0 +1,41 @@
+{
+  "homepage": {
+    "title": "Créez des livres en ligne, partagez-les avec le monde",
+    "description": "Bookora est votre outil gratuit de création de livres en ligne. Écrivez vos histoires, organisez vos chapitres et donnez vie à vos idées.",
+    "features": {
+      "title": "Des fonctionnalités puissantes pour chaque auteur",
+      "description": "De l’organisation des chapitres à l’exportation des livres, Bookora vous offre tous les outils nécessaires pour écrire facilement et en toute confiance."
+    },
+    "reviews": {
+      "title": "Adoré par des milliers de personnes",
+      "description": "Voici ce que certains de nos utilisateurs disent de BookOra."
+    }
+  },
+  "loginpage": {
+    "title": "Bon retour",
+    "description": "Connectez-vous à votre compte BookOra",
+    "email": "E-mail",
+    "password": "Mot de passe",
+    "submit": "Se connecter",
+    "devider": "Ou continuer avec",
+    "google": "Google",
+    "footer": {
+      "text": "Vous n’avez pas de compte ?",
+      "link": "Inscrivez-vous"
+    }
+  },
+  "registerpage": {
+    "title": "Créer un compte",
+    "description": "Commencez votre aventure d’écriture avec BookOra",
+    "name": "Nom complet",
+    "email": "E-mail",
+    "password": "Mot de passe",
+    "submit": "S’inscrire",
+    "devider": "Ou continuer avec",
+    "google": "Google",
+    "footer": {
+      "text": "Vous avez déjà un compte ?",
+      "link": "Se connecter"
+    }
+  }
+}

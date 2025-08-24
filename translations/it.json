@@ -1,0 +1,41 @@
+{
+  "homepage": {
+    "title": "Crea libri online, condividili con il mondo",
+    "description": "Bookora è il tuo strumento gratuito per creare libri online. Scrivi le tue storie, organizza i capitoli e dai vita alle tue idee.",
+    "features": {
+      "title": "Funzionalità potenti per ogni scrittore",
+      "description": "Dall’organizzazione dei capitoli all’esportazione dei libri, Bookora ti offre tutti gli strumenti di cui hai bisogno per scrivere con facilità e sicurezza."
+    },
+    "reviews": {
+      "title": "Amato da migliaia di persone",
+      "description": "Ecco cosa dicono alcuni dei nostri utenti su BookOra."
+    }
+  },
+  "loginpage": {
+    "title": "Bentornato",
+    "description": "Accedi al tuo account BookOra",
+    "email": "Email",
+    "password": "Password",
+    "submit": "Accedi",
+    "devider": "Oppure continua con",
+    "google": "Google",
+    "footer": {
+      "text": "Non hai un account?",
+      "link": "Registrati"
+    }
+  },
+  "registerpage": {
+    "title": "Crea un account",
+    "description": "Inizia il tuo percorso di scrittura con BookOra",
+    "name": "Nome completo",
+    "email": "Email",
+    "password": "Password",
+    "submit": "Registrati",
+    "devider": "Oppure continua con",
+    "google": "Google",
+    "footer": {
+      "text": "Hai già un account?",
+      "link": "Accedi"
+    }
+  }
+}

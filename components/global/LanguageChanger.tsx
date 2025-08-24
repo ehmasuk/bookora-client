@@ -3,7 +3,8 @@
 import { useEffect, useId, useState } from "react";
 
 import setCookie from "@/actions/set-cookie";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Select, SelectContent, SelectItem, SelectTrigger } from "@/components/ui/select";
+import { Globe } from "lucide-react";
 import { useLocale } from "next-intl";
 
 export default function LanguageChanger() {
@@ -25,15 +26,24 @@ export default function LanguageChanger() {
     <div className="*:not-first:mt-2">
       {mounted && (
         <Select defaultValue={language} onValueChange={handleChangeLanguage}>
-          <SelectTrigger id={id} className="[&>span_svg]:text-muted-foreground/80 [&>span]:flex outline-none cursor-pointer [&>span]:items-center [&>span]:gap-2 [&>span_svg]:shrink-0">
-            <SelectValue placeholder="Select language" />
+          <SelectTrigger id={id} className="cursor-pointer h-[36px] dark:bg-transparent">
+            <Globe size={16} />
           </SelectTrigger>
-          <SelectContent className="[&_*[role=option]>span>svg]:text-muted-foreground/80 [&_*[role=option]>span]:flex [&_*[role=option]>span]:items-center [&_*[role=option]>span]:gap-2 [&_*[role=option]>span>svg]:shrink-0">
+          <SelectContent>
+            <SelectItem value="de" className="hover:bg-blue-100 cursor-pointer">
+              <span className="truncate">Deutsch</span>
+            </SelectItem>
             <SelectItem value="en" className="hover:bg-blue-100 cursor-pointer">
-              <span className="truncate">EN</span>
+              <span className="truncate">English</span>
             </SelectItem>
             <SelectItem value="es" className="hover:bg-blue-100 cursor-pointer">
-              <span className="truncate">ES</span>
+              <span className="truncate">Español</span>
+            </SelectItem>
+            <SelectItem value="fr" className="hover:bg-blue-100 cursor-pointer">
+              <span className="truncate">Français</span>
+            </SelectItem>
+            <SelectItem value="it" className="hover:bg-blue-100 cursor-pointer">
+              <span className="truncate">Italiano</span>
             </SelectItem>
           </SelectContent>
         </Select>

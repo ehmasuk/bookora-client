@@ -1,7 +1,15 @@
 {
   "homepage": {
-    "title": "Crea libros hermosos con <highlight>BookOra</highlight>",
-    "description": "La mejor herramienta gratuita para crear libros que te ayuda a organizar capítulos, secciones y páginas con facilidad."
+    "title": "Crea libros en línea, compártelos con el mundo",
+    "description": "Bookora es tu creador de libros en línea gratuito. Escribe tus historias, organiza capítulos y da vida a tus ideas.",
+    "features": {
+      "title": "Funciones poderosas para cada escritor",
+      "description": "Desde organizar capítulos hasta exportar libros, Bookora te ofrece todas las herramientas que necesitas para escribir con facilidad y confianza."
+    },
+    "reviews": {
+      "title": "Amado por miles de personas",
+      "description": "Esto es lo que algunos de nuestros usuarios dicen sobre BookOra."
+    }
   },
   "loginpage": {
     "title": "Bienvenido de nuevo",
@@ -18,7 +26,7 @@
   },
   "registerpage": {
     "title": "Crea una cuenta",
-    "description": "Empieza tu viaje de escritura con BookOra",
+    "description": "Comienza tu viaje de escritura con BookOra",
     "name": "Nombre completo",
     "email": "Correo electrónico",
     "password": "Contraseña",
