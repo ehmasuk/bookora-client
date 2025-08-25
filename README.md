@@ -2,16 +2,11 @@
 
 Bookora is a full-stack web application that provides a platform for authors to write, organize, and manage their books. It offers a clean, intuitive interface with a rich text editor and features designed to streamline the book writing process.
 
-[![Live Demo](https://bookora.vercel.app)](YOUR_LIVE_DEMO_URL)
+[![Live Demo](https://bookora.vercel.app)]
 [![GitHub issues](https://img.shields.io/github/issues/ehmasuk/bookora-client)](https://github.com/ehmasuk/bookora-client/issues)
 [![GitHub forks](https://img.shields.io/github/forks/ehmasuk/bookora-client)](https://github.com/ehmasuk/bookora-client/network)
 [![GitHub stars](https://img.shields.io/github/stars/ehmasuk/bookora-client)](https://github.com/ehmasuk/bookora-client/stargazers)
 
-## Screenshot
-
-![Bookora Screenshot](PLACEHOLDER_FOR_YOUR_SCREENSHOT_URL)
-
-*A brief caption for your screenshot.*
 
 ## Features
 
