@@ -6,7 +6,7 @@ import { ChapterType } from "@/types/book";
 import { DndContext, DragEndEvent } from "@dnd-kit/core";
 import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
 import { SortableContext, verticalListSortingStrategy } from "@dnd-kit/sortable";
-import { ChevronRight, MenuIcon, PanelLeftClose, Plus } from "lucide-react";
+import { ChevronRight, PanelLeftClose, Plus } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -68,7 +68,7 @@ function BookSidebar({ isOpen, setIsOpen }: Props) {
 
   return (
     <div
-            className={`absolute top-0 ${
+      className={`absolute top-0 ${
         isOpen ? "left-0" : "left-[-350px]"
       } w-[350px] h-screen transition-all duration-300 shadow border border-slate-200 dark:border-gray-700 flex flex-col p-1 bg-slate-50 dark:bg-gray-900 z-10`}
     >
@@ -76,7 +76,7 @@ function BookSidebar({ isOpen, setIsOpen }: Props) {
       <div className="flex w-full p-1.5 justify-between items-center">
         <Logo />
         <div id="book-sidebar-toggler">
-            <PanelLeftClose onClick={() => setIsOpen(!isOpen)} size={20} className="hover:text-blue-500 duration-300 cursor-pointer" />
+          <PanelLeftClose onClick={() => setIsOpen(!isOpen)} size={20} className="hover:text-blue-500 duration-300 cursor-pointer" />
         </div>
       </div>
 

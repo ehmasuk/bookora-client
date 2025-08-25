@@ -3,7 +3,7 @@
 import useUpdate from "@/hooks/useUpdate";
 import { StoreType } from "@/store/store";
 import { useStoreState } from "easy-peasy";
-import { LoaderIcon, MenuIcon, PanelRightClose } from "lucide-react";
+import { LoaderIcon, PanelRightClose } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useParams } from "next/navigation";
 import { useNextStep } from "nextstepjs";
@@ -11,7 +11,6 @@ import { toast } from "sonner";
 import useSWR from "swr";
 import AvatarDropdown from "../global/AvatarDropdown";
 import LanguageChanger from "../global/LanguageChanger";
-import Logo from "../global/Logo";
 import TitleAsInput from "../global/TitleAsInput";
 import { AnimatedThemeToggler } from "../magicui/animated-theme-toggler";
 import { Button } from "../ui/button";
