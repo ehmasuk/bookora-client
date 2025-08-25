@@ -11,6 +11,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { BookType } from "@/types/book";
 import { useSession } from "next-auth/react";
 import { useTranslations } from "next-intl";
+import { toast } from "sonner";
 import useSWR from "swr";
 
 export default function BookManagementDashboard() {
@@ -22,7 +23,7 @@ export default function BookManagementDashboard() {
   const { data: res, error, isLoading } = useSWR(userId ? `/users/${userId}/books` : null);
 
   if (error) {
-    throw new Error(error.message);
+    toast.error(error.message);
   }
 
   const books = res?.data;
@@ -78,9 +79,20 @@ export default function BookManagementDashboard() {
 
           {/* Books Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-3 px-3 gap-6">
-            {userId && books?.map((book: BookType, index: number) => (
-              <ProfileBook userId={userId} chapters={book.chapters} image={book.image} title={book.title} id={book.id} key={index} summary={book.summary} author={book.author} visibility={book.visibility} />
-            ))}
+            {userId &&
+              books?.map((book: BookType, index: number) => (
+                <ProfileBook
+                  userId={userId}
+                  chapters={book.chapters}
+                  image={book.image}
+                  title={book.title}
+                  id={book.id}
+                  key={index}
+                  summary={book.summary}
+                  author={book.author}
+                  visibility={book.visibility}
+                />
+              ))}
 
             {isLoading && [...Array(5)].map((_, i) => <Skeleton key={i} className="w-full h-30" />)}
           </div>

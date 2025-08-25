@@ -6,16 +6,17 @@ import { ChapterType } from "@/types/book";
 import { DndContext, DragEndEvent } from "@dnd-kit/core";
 import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
 import { SortableContext, verticalListSortingStrategy } from "@dnd-kit/sortable";
-import { ChevronRight, MenuIcon, Plus } from "lucide-react";
+import { ChevronRight, MenuIcon, PanelLeftClose, Plus } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import { toast } from "sonner";
 import useSWR from "swr";
 import Empty from "../global/Empty";
 import Logo from "../global/Logo";
 import TitleBox from "../global/TitleBox";
 import CreateChapterModal from "../modals/CreateChapterModal";
 import { Skeleton } from "../ui/skeleton";
-import { useTranslations } from "next-intl";
 
 interface Props {
   isOpen: boolean;
@@ -26,7 +27,7 @@ function BookSidebar({ isOpen, setIsOpen }: Props) {
   // get book id from url
   const { bookId } = useParams();
 
-    const t = useTranslations("bookpage");
+  const t = useTranslations("bookpage");
 
   // fetch book data and set in bookinfo and chapters in store from the book data
   const { data: res, error, isLoading } = useSWR(bookId ? `/books/${bookId}` : null);
@@ -60,22 +61,22 @@ function BookSidebar({ isOpen, setIsOpen }: Props) {
   }, [res]);
 
   if (error) {
-    throw new Error(error.message);
+    toast.error(error.message);
   }
 
   const book = res?.data;
 
   return (
     <div
-      className={`${
-        !isOpen ? "absolute left-0 top-0" : ""
-      }w-[350px] h-screen transition duration-100 shadow border border-slate-200 dark:border-gray-700 flex flex-col p-1 bg-slate-50 dark:bg-gray-900`}
+            className={`absolute top-0 ${
+        isOpen ? "left-0" : "left-[-350px]"
+      } w-[350px] h-screen transition-all duration-300 shadow border border-slate-200 dark:border-gray-700 flex flex-col p-1 bg-slate-50 dark:bg-gray-900 z-10`}
     >
       {/* header => toggler */}
       <div className="flex w-full p-1.5 justify-between items-center">
         <Logo />
         <div id="book-sidebar-toggler">
-          <MenuIcon onClick={() => setIsOpen(!isOpen)} className="w-4 cursor-pointer text-slate-600 dark:text-slate-200" />
+            <PanelLeftClose onClick={() => setIsOpen(!isOpen)} size={20} className="hover:text-blue-500 duration-300 cursor-pointer" />
         </div>
       </div>
 
@@ -137,7 +138,12 @@ function BookSidebar({ isOpen, setIsOpen }: Props) {
 
       {/* footer => settings */}
       <div className="p-2 flex justify-between">
-        <p className="text-slate-400 text-xs dark:text-slate-500">A product by <a href="https://ehmasuk.vercel.app/" target="_blank" rel="noreferrer">Eh Masuk</a></p>
+        <p className="text-slate-400 text-xs dark:text-slate-500">
+          A product by{" "}
+          <a href="https://ehmasuk.vercel.app/" target="_blank" rel="noreferrer">
+            Eh Masuk
+          </a>
+        </p>
         <p className="text-slate-400 text-xs dark:text-slate-500">Bookora v 2.1.1</p>
       </div>
     </div>

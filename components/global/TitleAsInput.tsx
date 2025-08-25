@@ -4,9 +4,10 @@ interface Props {
   title: string;
   handleSubmit: (title: string) => void;
   className?: string;
+  maxCharachter?: number | null
 }
 
-function TitleAsInput({ title, handleSubmit, className = "" }: Props) {
+function TitleAsInput({ title, handleSubmit, className = "", maxCharachter = null, }: Props) {
   const [inputTitle, setInputTitle] = useState<string>(title || '');
   const [isEditing, setIsEditing] = useState<boolean>(false);
 
@@ -51,9 +52,9 @@ function TitleAsInput({ title, handleSubmit, className = "" }: Props) {
         <div 
           onClick={startEditing}
           className="cursor-pointer text-slate-800 dark:text-slate-100 truncate transition hover:opacity-80"
-          title="Click to edit"
+          title={inputTitle}
         >
-          {inputTitle || "Untitled"}
+          {maxCharachter && inputTitle.length > maxCharachter ? inputTitle.slice(0,maxCharachter) + '...' : inputTitle || "Untitled"}
         </div>
       )}
     </div>

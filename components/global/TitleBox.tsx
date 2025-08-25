@@ -158,6 +158,7 @@ function TitleBox({ id, title, index, isSection = false, parentChaperId = null }
 
           <TitleAsInput
             title={title}
+            maxCharachter={isSection ? 25 : null}
             handleSubmit={
               isSection ? (title) => updateData({ data: { title }, endpoint: `/sections/${id}`, doMutation: true }) : (title) => updateData({ data: { title }, endpoint: `/chapters/${id}` })
             }

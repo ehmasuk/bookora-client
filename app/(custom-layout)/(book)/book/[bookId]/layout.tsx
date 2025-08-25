@@ -27,11 +27,13 @@ function BookLayout({ children }: Props) {
   }
 
   return (
-    <main className="flex h-screen overflow-hidden">
-      <motion.div initial={{ x: 0 }} animate={{ x: sidebarIsOpen ? 0 : -350 }} transition={{ duration: 0.3 }}>
-        <BookSidebar isOpen={sidebarIsOpen} setIsOpen={setSidebarIsOpen} />
-      </motion.div>
-      <div className="flex-1">
+    <main className="h-screen overflow-hidden">
+      <BookSidebar isOpen={sidebarIsOpen} setIsOpen={setSidebarIsOpen} />
+      <div
+        className={`flex-1 transition-all duration-300 ${
+          sidebarIsOpen ? "ml-[350px]" : "ml-0"
+        }`}
+      >
         <BookNav isOpen={sidebarIsOpen} setIsOpen={setSidebarIsOpen} />
         <div className="h-[calc(100vh-100px)] overflow-y-auto px-5 relative">
           <div className="max-w-4xl mx-auto">{children}</div>
