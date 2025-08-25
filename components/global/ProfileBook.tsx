@@ -1,9 +1,27 @@
+import useDelete from "@/hooks/useDelete";
 import "@/public/css/profile-book.css";
 import { BookType } from "@/types/book";
 import { Edit, Trash } from "lucide-react";
 import Link from "next/link";
+import { mutate } from "swr";
+import DeleteConfirmationModal from "../modals/DeleteConfirmationModal";
 
-function ProfileBook({ title, id, visibility }: BookType) {
+interface ProfileBookType extends BookType {
+  userId: string;
+}
+
+function ProfileBook({ title, id, visibility, userId }: ProfileBookType) {
+  const { deleteData } = useDelete();
+
+  const handleDeleteBook = () => {
+    deleteData({
+      url: `/books/${id}`,
+      onSuccess: () => {
+        mutate(`/users/${userId}/books`);
+      },
+    });
+  };
+
   return (
     <div className="flex gap-4 py-6">
       <ul className="book-wraper">
@@ -54,10 +72,12 @@ function ProfileBook({ title, id, visibility }: BookType) {
               </div>
             </Link>
 
-            <div className="text-sm cursor-pointer flex items-center gap-1 text-red-500 hover:text-red-600">
-              <Trash size={15} />
-              Delete
-            </div>
+            <DeleteConfirmationModal onConfirm={handleDeleteBook} text="Are you sure you want to delete this book?">
+              <div className="text-sm cursor-pointer flex items-center gap-1 text-red-500 hover:text-red-600">
+                <Trash size={15} />
+                Delete
+              </div>
+            </DeleteConfirmationModal>
           </div>
         </div>
       </div>

@@ -25,9 +25,9 @@ function RegisterPage() {
   const router = useRouter();
 
   const formSchema = z.object({
-    name: z.string().min(1, { message: "Name is required" }).max(50, { message: "Name is too long" }),
-    email: z.string().min(1, { message: "Email is required" }).max(50, { message: "Email is too long" }).email({ message: "Invalid email" }),
-    password: z.string().min(1, { message: "Password is required" }),
+    name: z.string().min(1, { message: "Name is required" }).min(3, { message: "Name must be minimum 3 characters" }),
+    email: z.string().min(1, { message: "Email is required" }).email({ message: "Invalid email" }),
+    password: z.string().min(1, { message: "Password is required" }).min(8, { message: "Password Must be 8 characters long" }),
   });
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -73,7 +73,7 @@ function RegisterPage() {
                     <FormItem>
                       <FormLabel>{t("name")}</FormLabel>
                       <FormControl>
-                        <Input placeholder="John Doe" {...field} />
+                        <Input placeholder="Enter your name" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -86,7 +86,7 @@ function RegisterPage() {
                     <FormItem>
                       <FormLabel>{t("email")}</FormLabel>
                       <FormControl>
-                        <Input placeholder="example@xyz.com" {...field} />
+                        <Input placeholder="Enter your email" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -99,7 +99,7 @@ function RegisterPage() {
                     <FormItem>
                       <FormLabel>{t("password")}</FormLabel>
                       <FormControl>
-                        <Input placeholder="xxxxx" {...field} />
+                        <Input minLength={8} placeholder="Enter password" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>

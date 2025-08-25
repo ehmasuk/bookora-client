@@ -78,8 +78,8 @@ export default function BookManagementDashboard() {
 
           {/* Books Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-3 px-3 gap-6">
-            {books?.map((book: BookType, index: number) => (
-              <ProfileBook chapters={book.chapters} image={book.image} title={book.title} id={book.id} key={index} summary={book.summary} author={book.author} visibility={book.visibility} />
+            {userId && books?.map((book: BookType, index: number) => (
+              <ProfileBook userId={userId} chapters={book.chapters} image={book.image} title={book.title} id={book.id} key={index} summary={book.summary} author={book.author} visibility={book.visibility} />
             ))}
 
             {isLoading && [...Array(5)].map((_, i) => <Skeleton key={i} className="w-full h-30" />)}

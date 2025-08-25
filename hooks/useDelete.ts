@@ -2,6 +2,7 @@
 
 import axiosInstance from "@/lib/axiosInstance";
 import { useState } from "react";
+import { toast } from "sonner";
 
 interface DeleteDataProps {
   url: string;
@@ -17,9 +18,11 @@ function useDelete() {
     setLoading(true);
     try {
       await axiosInstance.delete(url);
+      toast.success("Book deleted successfully");
       onSuccess?.();
     } catch (error) {
       console.log(error);
+      toast.error("Something went wrong");
       setError(true);
       onError?.();
     } finally {

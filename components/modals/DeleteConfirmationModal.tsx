@@ -31,7 +31,7 @@ export default function DeleteConfirmationModal({ children, text, onConfirm }: P
             <CircleAlertIcon className="text-red-500" size={20} />
           </div>
           <AlertDialogHeader>
-            <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+            <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
             <AlertDialogDescription>{text}</AlertDialogDescription>
           </AlertDialogHeader>
         </div>
