@@ -102,10 +102,10 @@ function BookTiptapEditor() {
 
   return (
     <>
-      <div className="flex justify-between items-center text-gray-500 dark:text-gray-400 text-sm py-5 mt-5">
+      <div className="flex justify-between items-center text-gray-500 dark:text-gray-400 text-sm md:py-5 py-2 md:mt-5">
         <EditorToolbar editor={editor} />
 
-        <div className="text-xs">
+        <div className="text-xs md:relative fixed bottom-0 right-0">
           <span className="font-semibold text-slate-800 dark:text-white">{editor?.storage.characterCount.characters()}</span> {t("characters")},{" "}
           <span className="font-semibold text-slate-800 dark:text-white">{editor?.storage.characterCount.words()}</span> {t("words")}
         </div>

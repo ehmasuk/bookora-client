@@ -16,7 +16,7 @@ export default function HeroSection() {
     <GridBg>
       <div className="relative mx-auto flex max-w-4xl flex-col items-center justify-center">
         <div className="px-4 py-10 md:py-20">
-          <h1 className="relative z-10 mx-auto max-w-4xl text-center text-2xl font-bold text-slate-700 md:text-4xl lg:text-7xl dark:text-slate-300">
+          <h1 className="relative z-10 mx-auto max-w-4xl text-center text-4xl font-bold text-slate-700 md:text-5xl lg:text-7xl dark:text-slate-300">
             {t("title")
               .split(" ")
               .map((word, index) => (

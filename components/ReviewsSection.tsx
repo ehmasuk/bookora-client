@@ -47,9 +47,9 @@ export function ReviewsSection() {
   const secondRow = reviews.slice(reviews.length / 2);
 
   return (
-    <div className="relative py-20 flex w-full max-w-4xl mx-auto flex-col items-center justify-center overflow-hidden">
-      <h2 className="text-neutrl-900 text-3xl font-medium tracking-tight sm:text-center dark:text-white">{t("title")}</h2>
-      <p className="mt-2 text-lg text-neutral-600 sm:text-center dark:text-neutral-200 mb-10">{t("description")}</p>
+    <div className="relative py-20 flex w-full max-w-4xl px-4 mx-auto flex-col items-center justify-center overflow-hidden">
+      <h2 className="text-neutrl-900 md:text-3xl text-2xl font-medium tracking-tight text-center dark:text-white">{t("title")}</h2>
+      <p className="mt-2 md:text-lg text-base text-neutral-600 text-center dark:text-neutral-200 mb-10">{t("description")}</p>
       <Marquee pauseOnHover className="[--duration:20s]">
         {firstRow.map((review) => (
           <ReviewCard key={review.username} {...review} />

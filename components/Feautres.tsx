@@ -29,10 +29,10 @@ export function Features() {
   ];
 
   return (
-    <div className="py-10 md:py-20">
-      <h2 className="text-neutrl-900 text-3xl font-medium tracking-tight sm:text-center dark:text-white">{t("title")}</h2>
-      <p className="mt-2 text-lg text-neutral-600 sm:text-center dark:text-neutral-200 mb-10 max-w-2xl mx-auto">{t("description")}</p>
-      <BentoGrid className="max-w-4xl mx-auto">
+    <div className="py-10 md:py-20 max-w-4xl mx-auto px-4">
+      <h2 className="text-neutrl-900 md:text-3xl text-2xl font-medium tracking-tight text-center dark:text-white">{t("title")}</h2>
+      <p className="mt-2 md:text-lg text-base text-neutral-600 text-center dark:text-neutral-200 mb-10 max-w-2xl mx-auto">{t("description")}</p>
+      <BentoGrid>
         {items.map((item, i) => (
           <BentoGridItem key={i} title={item.title} description={item.description} header={images[i]} icon={icons[i]} className={i === 3 || i === 6 ? "md:col-span-2" : ""} />
         ))}
