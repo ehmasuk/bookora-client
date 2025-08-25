@@ -16,7 +16,7 @@ function useAuth() {
     if (!result?.error) {
       toast.success("Logged in successfully.");
       setLoading(false);
-      router.push("/");
+      router.push("/profile");
     } else {
       toast.error("Authentication failed");
       setLoading(false);

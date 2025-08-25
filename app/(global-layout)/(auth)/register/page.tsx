@@ -45,8 +45,8 @@ function RegisterPage() {
       data: values,
       onSuccess: () => {
         signIn("credentials", { ...values, redirect: false });
-        router.push("/");
         toast.success("Registered successfully");
+        router.push("/profile");
       },
       onError: (err) => {
         toast.error(err);
