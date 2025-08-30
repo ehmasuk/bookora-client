@@ -72,7 +72,7 @@ function BookNav({ isOpen, setIsOpen }: Props) {
         )}
 
         {bookIsUpdating && (
-          <div className="flex text-blue-500 items-center text-sm gap-1">
+          <div className="flex md:relative fixed bottom-5 right-5 text-blue-500 items-center text-sm gap-1">
             {t("saving")}
             <LoaderIcon className="w-4 dark:text-white cursor-pointer animate-spin" />
           </div>
@@ -104,11 +104,11 @@ function BookNav({ isOpen, setIsOpen }: Props) {
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="md:hidden bg-background border-t"
+            className="md:hidden bg-background border-t w-full"
           >
-            <div className="flex p-2 gap-1 justify-center">
+            <div className="flex p-2 gap-2 w-full justify-center items-center">
               <Link href="/">
-                <HomeIcon size={20} className="w-6 h-6" />
+                <HomeIcon size={18} className="w-6 h-6" />
               </Link>
               <AvatarDropdown />
               <LanguageChanger />
