@@ -4,8 +4,9 @@ import useUpdate from "@/hooks/useUpdate";
 import { StoreType } from "@/store/store";
 import { useStoreState } from "easy-peasy";
 import { AnimatePresence, motion } from "framer-motion";
-import { LoaderIcon, MenuIcon, PanelRightClose, X } from "lucide-react";
+import { HomeIcon, LoaderIcon, Menu, PanelRightClose, X } from "lucide-react";
 import { useTranslations } from "next-intl";
+import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useNextStep } from "nextstepjs";
 import { useEffect, useState } from "react";
@@ -88,20 +89,31 @@ function BookNav({ isOpen, setIsOpen }: Props) {
         </Button>
       </div>
 
-      <MenuIcon size={18} className="block md:hidden hover:text-blue-500 duration-300 cursor-pointer" onClick={() => setMobileNavIsOpen(!mobileNavIsOpen)} />
+      {/* Mobile Hamburger */}
+      <div className="md:hidden flex items-center gap-2">
+        <button onClick={() => setMobileNavIsOpen(!mobileNavIsOpen)} className="p-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-800">
+          {mobileNavIsOpen ? <X size={20} /> : <Menu size={20} />}
+        </button>
+      </div>
+
+      {/* Mobile Menu */}
       <AnimatePresence>
         {mobileNavIsOpen && (
           <motion.div
-            initial={{ opacity: 0, x: 100 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: 100 }}
-            transition={{ duration: 0.3 }}
-            className="fixed z-50 right-0 w-[100px] dark:bg-gray-900 h-screen top-0 bg-slate-50 shadow border border-slate-200 dark:border-gray-700 p-4 justify-center flex flex-col gap-4 md:hidden items-center"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="md:hidden bg-background border-t"
           >
-            <X size={20} onClick={() => setMobileNavIsOpen(!mobileNavIsOpen)} className="absolute right-2 top-2 text-red-500 cursor-pointer" />
-            <AvatarDropdown />
-            <LanguageChanger />
-            <AnimatedThemeToggler className="w-full" />
+            <div className="flex p-2 gap-1 justify-center">
+              <Link href="/">
+                <HomeIcon size={20} className="w-6 h-6" />
+              </Link>
+              <AvatarDropdown />
+              <LanguageChanger />
+              <AnimatedThemeToggler />
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
