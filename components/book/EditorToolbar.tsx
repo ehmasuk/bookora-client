@@ -52,7 +52,7 @@ function EditorToolbar({ editor }: Props) {
 
       <div
         onClick={() => editor.chain().focus().setTextAlign("left").run()}
-        className={`cursor-pointer bg-blue-100 border dark:border-zinc-800 border-zinc-100 rounded text-sm [&.active]:bg-blue-200 [&.active]:text-slate-800 dark:bg-slate-800 text-slate-800 dark:text-white hover:bg-blue-200 size-6 md:size-7 grid place-items-center  ${
+        className={`cursor-pointer hidden bg-blue-100 border dark:border-zinc-800 border-zinc-100 rounded text-sm [&.active]:bg-blue-200 [&.active]:text-slate-800 dark:bg-slate-800 text-slate-800 dark:text-white hover:bg-blue-200 size-6 md:size-7 md:grid place-items-center  ${
           editor.isActive("left") ? "active" : ""
         }`}
       >
@@ -60,7 +60,7 @@ function EditorToolbar({ editor }: Props) {
       </div>
       <div
         onClick={() => editor.chain().focus().setTextAlign("center").run()}
-        className={`cursor-pointer bg-blue-100 border dark:border-zinc-800 border-zinc-100 rounded text-sm [&.active]:bg-blue-200 [&.active]:text-slate-800 dark:bg-slate-800 text-slate-800 dark:text-white hover:bg-blue-200 size-6 md:size-7 grid place-items-center  ${
+        className={`cursor-pointer bg-blue-100 border dark:border-zinc-800 border-zinc-100 rounded text-sm [&.active]:bg-blue-200 [&.active]:text-slate-800 dark:bg-slate-800 text-slate-800 dark:text-white hover:bg-blue-200 size-6 md:size-7 md:grid hidden place-items-center  ${
           editor.isActive("center") ? "active" : ""
         }`}
       >
@@ -68,7 +68,7 @@ function EditorToolbar({ editor }: Props) {
       </div>
       <div
         onClick={() => editor.chain().focus().setTextAlign("right").run()}
-        className={`cursor-pointer bg-blue-100 border dark:border-zinc-800 border-zinc-100 rounded text-sm [&.active]:bg-blue-200 [&.active]:text-slate-800 dark:bg-slate-800 text-slate-800 dark:text-white hover:bg-blue-200 size-6 md:size-7 grid place-items-center  ${
+        className={`cursor-pointer bg-blue-100 border dark:border-zinc-800 border-zinc-100 rounded text-sm [&.active]:bg-blue-200 [&.active]:text-slate-800 dark:bg-slate-800 text-slate-800 dark:text-white hover:bg-blue-200 size-6 md:size-7 md:grid hidden place-items-center  ${
           editor.isActive("right") ? "active" : ""
         }`}
       >
@@ -76,7 +76,7 @@ function EditorToolbar({ editor }: Props) {
       </div>
       <div
         onClick={() => editor.chain().focus().setTextAlign("justify").run()}
-        className={`cursor-pointer bg-blue-100 border dark:border-zinc-800 border-zinc-100 rounded text-sm [&.active]:bg-blue-200 [&.active]:text-slate-800 dark:bg-slate-800 text-slate-800 dark:text-white hover:bg-blue-200 size-6 md:size-7 grid place-items-center  ${
+        className={`cursor-pointer bg-blue-100 border dark:border-zinc-800 border-zinc-100 rounded text-sm [&.active]:bg-blue-200 [&.active]:text-slate-800 dark:bg-slate-800 text-slate-800 dark:text-white hover:bg-blue-200 size-6 md:size-7 md:grid hidden place-items-center  ${
           editor.isActive("justify") ? "active" : ""
         }`}
       >

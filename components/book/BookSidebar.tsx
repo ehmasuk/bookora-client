@@ -70,7 +70,7 @@ function BookSidebar({ isOpen, setIsOpen }: Props) {
     <div
       className={`absolute top-0 ${
         isOpen ? "left-0" : "left-[-350px]"
-      } w-[350px] h-screen transition-all duration-300 shadow border border-slate-200 dark:border-gray-700 flex flex-col p-1 bg-slate-50 dark:bg-gray-900 z-10`}
+      } min-w-[350px] h-screen transition-all duration-300 shadow border border-slate-200 dark:border-gray-700 flex flex-col p-1 bg-slate-50 dark:bg-gray-900 z-50`}
     >
       {/* header => toggler */}
       <div className="flex w-full p-1.5 justify-between items-center">
@@ -93,7 +93,7 @@ function BookSidebar({ isOpen, setIsOpen }: Props) {
           </div>
         </div>
 
-        <div className="chapters mt-3 flex-1 hover:overflow-y-auto overflow-hidden">
+        <div className="chapters mt-3 flex-1 hover:overflow-y-auto md:overflow-hidden">
           <div className="text-sm group h-[40px] font-medium p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded cursor-pointer gap-2 flex items-center justify-between">
             <div className="text-slate-600 dark:text-slate-300 flex items-center gap-1 flex-1">
               <div onClick={() => setChapterIsOpen(!chapterIsOpen)} className="w-4 rounded hover:bg-slate-200 dark:hover:bg-blue-400 dark:hover:text-white">

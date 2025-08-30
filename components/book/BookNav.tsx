@@ -3,10 +3,12 @@
 import useUpdate from "@/hooks/useUpdate";
 import { StoreType } from "@/store/store";
 import { useStoreState } from "easy-peasy";
-import { LoaderIcon, PanelRightClose } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
+import { LoaderIcon, MenuIcon, PanelRightClose, X } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useParams } from "next/navigation";
 import { useNextStep } from "nextstepjs";
+import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import useSWR from "swr";
 import AvatarDropdown from "../global/AvatarDropdown";
@@ -27,6 +29,20 @@ function BookNav({ isOpen, setIsOpen }: Props) {
   const { updateData } = useUpdate();
   const { startNextStep } = useNextStep();
 
+  const handleHelp = () => {
+    startNextStep("mainTour");
+  };
+
+  const [isMobile, setIsMobile] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (window.innerWidth < 768) {
+      setIsMobile(true);
+    }
+  }, []);
+
+  const [mobileNavIsOpen, setMobileNavIsOpen] = useState<boolean>(false);
+
   // get book id from url
   const { bookId } = useParams();
 
@@ -42,7 +58,7 @@ function BookNav({ isOpen, setIsOpen }: Props) {
   const book = res?.data;
 
   return (
-    <nav className="flex border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 w-full sticky top-0 flex-wrap gap-2 items-center justify-between px-8 py-2 dark:bg-gray-900">
+    <nav className="flex border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 w-full sticky top-0 flex-wrap gap-2 items-center justify-between md:px-8 px-2 py-2 dark:bg-gray-900">
       <div className="flex gap-3 items-center">
         {!isOpen && <PanelRightClose onClick={() => setIsOpen(!isOpen)} size={20} className="hover:text-blue-500 duration-300 cursor-pointer" />}
 
@@ -50,7 +66,7 @@ function BookNav({ isOpen, setIsOpen }: Props) {
 
         {!isLoading && (
           <div id="book-name">
-            <TitleAsInput title={book?.title} handleSubmit={(title) => updateData({ data: { title }, endpoint: `/books/${bookId}` })} />
+            <TitleAsInput maxCharachter={isMobile ? 30 : null} title={book?.title} handleSubmit={(title) => updateData({ data: { title }, endpoint: `/books/${bookId}` })} />
           </div>
         )}
 
@@ -61,14 +77,34 @@ function BookNav({ isOpen, setIsOpen }: Props) {
           </div>
         )}
       </div>
-      <div className="flex gap-3 items-center">
+
+      {/* desktop */}
+      <div className="hidden md:flex gap-3 items-center">
         <AvatarDropdown />
         <LanguageChanger />
         <AnimatedThemeToggler />
-        <Button variant="black" onClick={() => startNextStep("mainTour")}>
+        <Button variant="black" onClick={handleHelp}>
           Help
         </Button>
       </div>
+
+      <MenuIcon size={18} className="block md:hidden hover:text-blue-500 duration-300 cursor-pointer" onClick={() => setMobileNavIsOpen(!mobileNavIsOpen)} />
+      <AnimatePresence>
+        {mobileNavIsOpen && (
+          <motion.div
+            initial={{ opacity: 0, x: 100 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 100 }}
+            transition={{ duration: 0.3 }}
+            className="fixed z-50 right-0 w-[100px] dark:bg-gray-900 h-screen top-0 bg-slate-50 shadow border border-slate-200 dark:border-gray-700 p-4 justify-center flex flex-col gap-4 md:hidden items-center"
+          >
+            <X size={20} onClick={() => setMobileNavIsOpen(!mobileNavIsOpen)} className="absolute right-2 top-2 text-red-500 cursor-pointer" />
+            <AvatarDropdown />
+            <LanguageChanger />
+            <AnimatedThemeToggler className="w-full" />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 }
