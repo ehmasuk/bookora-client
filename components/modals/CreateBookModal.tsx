@@ -13,7 +13,7 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useNextStep } from "nextstepjs";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
@@ -25,6 +25,14 @@ interface Props {
 }
 
 function CreateBookModal({ children, tooltip = true, eligableToShowStepsGuide = false }: Props) {
+  const [isMobile, setIsMobile] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (window.innerWidth < 768) {
+      setIsMobile(true);
+    }
+  }, []);
+
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const { startNextStep } = useNextStep();
   const router = useRouter();
@@ -63,7 +71,7 @@ function CreateBookModal({ children, tooltip = true, eligableToShowStepsGuide = 
         router.push(`/book/${newBookId}`);
         setIsOpen(false);
 
-        if (eligableToShowStepsGuide) {
+        if (!isMobile && eligableToShowStepsGuide) {
           setTimeout(() => {
             startNextStep("mainTour");
           }, 2000);
